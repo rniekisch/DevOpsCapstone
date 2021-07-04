@@ -5,8 +5,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
-                        def newImage = docker.build("rniekisch/capstone_app:${env.BUILD_TAG}")
-                        newImage.push()
+                        def newImage = docker.build("rniekisch/capstone_app")
+                        newImage.push("${env.BUILD_TAG}")
                         newImage.push("latest")
                     }
                 }
