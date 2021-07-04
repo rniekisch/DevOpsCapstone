@@ -18,6 +18,8 @@ node('master') {
     }
     */
     stage('Deploy to Kubernetes cluster') {
+        def path = pwd
+        echo "Path: $path"
         def text = readFile file: "${WORKSPACE}/Jenkinsfile"
         //def text = readFile file: "${WORKSPACE}/kubernetes/deployment.yaml.tmp"
         ////text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
