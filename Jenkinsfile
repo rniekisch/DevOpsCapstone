@@ -18,7 +18,7 @@ node('master') {
     }
     */
     stage('Deploy to Kubernetes cluster') {
-        println fileExists('kubernetes/deployment.yaml.tmp')
+        println fileExists("kubernetes/deployment.yaml.tmp")
         //def text = readFile(file: 'kubernetes/deployment.yaml.tmp')
         ////text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
         //text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:latest")
