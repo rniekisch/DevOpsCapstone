@@ -1,4 +1,5 @@
 node {
+    /*
     def newImage
 
     stage('Checkout Git Repository') {
@@ -15,10 +16,11 @@ node {
             newImage.push("latest")
         }
     }
-    
+    */
     stage('Deploy to Kubernetes cluster') {
         def text = readFile file: "kubernetes/deployment.yaml.tmp"
-        text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
+        //text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
+        text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:latest")
         writeFile file: "kubernetes/deployment.yaml", text: text            
         echo "Kubernetes Deployment:\n$text"
 
