@@ -7,7 +7,7 @@ node {
 
     stage('Push docker image') {
         withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
-            newImage.push("${env.BUILD_NUMBER}")
+            newImage.push("BUILD_${env.BUILD_NUMBER}")
             newImage.push("latest")
         }
     }
