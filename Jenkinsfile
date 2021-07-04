@@ -1,11 +1,11 @@
 node {
-    /*
+    
     def newImage
 
     stage('Checkout Git Repository') {
         checkout scm
     }
-    
+    /*
     stage('Build docker image') {
         newImage = docker.build("rniekisch/capstone_app")
     }
