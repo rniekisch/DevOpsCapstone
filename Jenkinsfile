@@ -19,7 +19,9 @@ node('master') {
 
     stage('Lint app') {
     	docker.image('rniekisch/capstone_app:latest').inside() {
-	    sh 'pylint --disable=R,C,W1203 app.py'
+	    withEnv(['PYLINTHOME=.']) {
+                sh "pylint --disable=R,C,W1203 --output-format=parseable app.py"
+            }
 	}
     }
 	
