@@ -45,6 +45,8 @@ My first run resulted in more than 200 critical issues found in the base image p
 
 I do not want to fix those issues right now. But i want to monitor them. Therefore the 'Security Scan' stage does not break the pipeline and just report the found issues.
 
+![Trivy report](/screenshots/trivy_report.png)
+
 ### Lint app
 
 'pylint' is run inside the created image. If there is an error the pipline will fail. See the next screenshot for a failed build:
