@@ -12,7 +12,7 @@ The url for the app is: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-we
 
 ### Kubernetes cluster
 
-The kubernetes cluster is build with help of eksctl. The script 'infrastructure/create_cluster.sh' will run eksctl to generate a simple two node cluster with t2.medium instances. eksctl is based on cloudformation. For reference i saved the generated cloudformation json in 'infrastructure/cluster.json'.
+The kubernetes cluster is build with help of eksctl. The script 'infrastructure/create_cluster.sh' will run eksctl to generate a simple two node cluster with t2.medium instances. eksctl is based on cloudformation. For reference i put the generated cloudformation json in 'infrastructure/cluster.json'.
 
 Note that the deployment of the app is done in the jenkinsfile stage 'Deploy to Kubernetes cluster', using the config template 'kubernetes/deployment.yaml.tmp'.
 
