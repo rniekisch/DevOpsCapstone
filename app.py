@@ -14,7 +14,7 @@ def home():
     event = request.values.get("event")
     ip_address = request.remote_addr
     if ip_address is None:
-        ip_adress = 'unknown'
+        ip_address = 'unknown'
     return '''
 <html>
     <head>
