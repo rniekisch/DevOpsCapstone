@@ -20,6 +20,7 @@ node('master') {
     stage('Lint app') {
     	docker.image('rniekisch/capstone_app:latest').inside() {
 	    sh 'pylint app.py'
+	}
     }
 	
     stage('Push docker image') {
