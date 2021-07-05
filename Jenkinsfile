@@ -9,10 +9,20 @@ node('master') {
         echo ("CommitId: $commitId")
     }
 
+    stage('Lint Dockerfile') {
+	    sh('hadolint Dockerfile')
+    }
+
     stage('Build docker image') {
         newImage = docker.build("rniekisch/capstone_app")
     }
 
+    stage('Lint app') {
+    	docker.image('rniekisch/capstone_app:latest').inside() {
+	    sh 'pylint app.py'
+	}
+    }
+	
     stage('Push docker image') {
         withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
             newImage.push("${commitId}")
