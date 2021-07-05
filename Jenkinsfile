@@ -19,9 +19,9 @@ node('master') {
     */
     stage('Deploy to Kubernetes cluster') {
         def text = readFile(file: 'kubernetes/deployment.yaml.tmp')
-        ////text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
-        //text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:latest")
-        //writeFile file: "${WORKSPACE}/kubernetes/deployment.yaml", text: text            
+        text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
+        text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:latest")
+        writeFile file: "${WORKSPACE}/kubernetes/deployment.yaml", text: text            
         echo "Kubernetes Deployment:\n$text"
 
         withAWS(credentials: 'aws', region: 'us-west-2') {
