@@ -1,11 +1,14 @@
 node('master') {
     
     def newImage
+    def commitId
 
     stage('Checkout Git Repository') {
         checkout scm
+        commitId = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+        echo ("CommitId: $commitId")
     }
-
+/*
     stage('Build docker image') {
         newImage = docker.build("rniekisch/capstone_app")
     }
@@ -34,5 +37,5 @@ node('master') {
             sh "kubectl get service/capstone-service"
         }
     }
-
+*/
 }
