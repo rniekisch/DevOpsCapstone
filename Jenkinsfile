@@ -8,22 +8,21 @@ node('master') {
         commitId = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
         echo ("CommitId: $commitId")
     }
-/*
+
     stage('Build docker image') {
         newImage = docker.build("rniekisch/capstone_app")
     }
 
     stage('Push docker image') {
         withDockerRegistry([url: "", credentialsId: "dockerhub"]) {
-            newImage.push("BUILD_${env.BUILD_NUMBER}")
+            newImage.push("${commitId}")
             newImage.push("latest")
         }
     }
 
     stage('Deploy to Kubernetes cluster') {
         def text = readFile(file: 'kubernetes/deployment.yaml.tmp')
-        text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
-        text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:latest")
+        text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:${commitId}")
         writeFile file: "${WORKSPACE}/kubernetes/deployment.yaml", text: text            
         echo "Kubernetes Deployment:\n$text"
 
@@ -37,5 +36,5 @@ node('master') {
             sh "kubectl get service/capstone-service"
         }
     }
-*/
+
 }
