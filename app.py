@@ -13,7 +13,7 @@ def home():
     url = request.values.get("url") or request.headers.get("Referer")
     event = request.values.get("event")
     ip_address = request.remote_addr
-    if ip_adress is None:
+    if ip_address is None:
         ip_adress = 'unknown'
     return '''
 <html>
