@@ -19,7 +19,7 @@ node('master') {
 
     stage('Lint app') {
     	docker.image('rniekisch/capstone_app:latest').inside() {
-	    sh 'pylint app.py'
+	    sh 'pylint --disable=R,C,W1203 app.py'
 	}
     }
 	
