@@ -1,7 +1,7 @@
 
 ## Solution
 
-The deployed application is a (very) simple Python Flask app, showing request data like browser, referer, event and ip address. The used docker registry is a public repository on DockerHub. The implemented update strategy for the Kubernetes pods is a rolling update.
+The deployed application is a (very) simple Python Flask app, showing request data like browser, referer, event and ip address. The used docker registry is a public repository on DockerHub. For Kubernetes AWS EKS is used. The implemented update strategy for the Kubernetes pods is a rolling update.
 
 The app can be found at: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com>
 
@@ -66,6 +66,10 @@ The update itself is done with help of the 'kubernetes/deployment.yaml.tmp' temp
 The effect of the rolling update can be seen here. The "old" pods get replaced by new pods running the new image:
 
 ![Rolling update](/screenshots/rolling_update.png)
+
+The created ec2 instances:
+
+![EC2 instances](/screenshots/ec2_instances.png)
 
 
 ## Result
