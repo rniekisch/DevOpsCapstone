@@ -23,6 +23,8 @@ I used a "devops" vagrant box on my windows host to run Jenkins, docker and kube
 
 ## Jenkins Pipeline Stages
 
+Following is a description of the different Pipeline stages, in the order as they are executed.
+
 ### Checkout Git repository
 
 This stage makes sure that a complete, and not sparse, git checkout is available. For this an explicit 'checkout scm' step is executed. We also retrieve the current commit id in this stage. It is later used to uniquely tag the pushed image.
