@@ -9,6 +9,11 @@ node('master') {
         echo ("CommitId: $commitId")
     }
 
+    stage('Linting') {
+	    sh('hadolint Dockerfile')
+	    sh('pylint app.py')
+    }
+
     stage('Build docker image') {
         newImage = docker.build("rniekisch/capstone_app")
     }
