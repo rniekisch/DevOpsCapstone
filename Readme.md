@@ -1,11 +1,9 @@
 
 ## Solution
 
-The deployed application is a simple Python Flask app, showing request data like browser, referer, event and ip address.
+The deployed application is a (very) simple Python Flask app, showing request data like browser, referer, event and ip address. The used docker registry is a public repository on DockerHub. The implemented update strategy for the Kubernetes pods is a rolling update.
 
-The implemented update strategy is a rolling update.
-
-The url for the app is: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com>
+The app can be found at: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com>
 
 
 ## Infrastructure
@@ -80,4 +78,4 @@ Website:
 
 ## Additional scripts
 
-'run_docker.sh' and 'upload_docker.sh' can be used to test and deploy the application image outise of the CI/CD process
+'run_docker.sh' and 'upload_docker.sh' can be used to test and deploy the application image outside of the CI/CD process.
