@@ -5,7 +5,7 @@ The deployed application is a simple Python Flask app, showing request data like
 
 As update strategy i implemented a rolling update.
 
-The url for the app is: [link](http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com)
+The url for the app is: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com>
 
 # Infrastructure
 
