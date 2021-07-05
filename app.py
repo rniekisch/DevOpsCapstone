@@ -2,71 +2,36 @@ from flask import Flask, request, jsonify
 from flask.logging import create_logger
 import logging
 
-import pandas as pd
-from sklearn.externals import joblib
-from sklearn.preprocessing import StandardScaler
-
 app = Flask(__name__)
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
 
-def scale(payload):
-    """Scales Payload"""
-    
-    LOG.info("Scaling Payload: \n%s", payload)
-    scaler = StandardScaler().fit(payload.astype(float))
-    scaled_adhoc_predict = scaler.transform(payload.astype(float))
-    return scaled_adhoc_predict
-
 @app.route("/")
 def home():
-    html = "<h3>Sklearn Prediction Home</h3>"
-    return html.format(format)
+    browser = request.headers.get("User-Agent")
+    url = request.values.get("url") or request.headers.get("Referer")
+    event = request.values.get("event")
+    ip_address = request.access_route[0] or request.remote_addr
+    geodata = get_geodata(ip_address)
+    location = "{}, {}".format(geodata.get("city"),
+                               geodata.get("zipcode"))
 
-@app.route("/predict", methods=['POST'])
-def predict():
-    """Performs an sklearn prediction
-        
-        input looks like:
-        {
-        "CHAS":{
-        "0":0
-        },
-        "RM":{
-        "0":6.575
-        },
-        "TAX":{
-        "0":296.0
-        },
-        "PTRATIO":{
-        "0":15.3
-        },
-        "B":{
-        "0":396.9
-        },
-        "LSTAT":{
-        "0":4.98
-        }
-        
-        result looks like:
-        { "prediction": [ <val> ] }
-        
-        """
-    
-    # Logging the input payload
-    json_payload = request.json
-    LOG.info("JSON payload: \n%s", json_payload)
-    inference_payload = pd.DataFrame(json_payload)
-    LOG.info("Inference payload DataFrame: \n%s", inference_payload)
-    # scale the input
-    scaled_payload = scale(inference_payload)
-    # get an output prediction from the pretrained model, clf
-    prediction = list(clf.predict(scaled_payload))
-    # TO DO:  Log the output prediction value
-    LOG.info("output prediction: %s", prediction)
-    return jsonify({'prediction': prediction})
+    return '''
+<html>
+    <head>
+        <title>Visitor Information</title>
+    </head>
+    <body>
+        <table>
+            <tr> <td>Browser:</td> <td>'''+browser+'''</td> </tr>
+            <tr> <td>Url:</td> <td>'''+url+'''</td> </tr>
+            <tr> <td>Event:</td> <td>'''+event+'''</td> </tr>
+            <tr> <td>IP Adress:</td> <td>'''+ip_address+'''</td> </tr>
+            <tr> <td>Geodata:</td> <td>'''+geodata+'''</td> </tr>
+            <tr> <td>Location:</td> <td>'''+location+'''</td> </tr>
+        </table>
+    </body>
+</html>'''
 
 if __name__ == "__main__":
-    # load pretrained model as clf
-    clf = joblib.load("./model_data/boston_housing_prediction.joblib")
     app.run(host='0.0.0.0', port=80, debug=True) # specify port=80
