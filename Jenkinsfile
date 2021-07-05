@@ -8,27 +8,10 @@ node('master') {
         commitId = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
         echo ("CommitId: $commitId")
     }
-
-    stage ("Lint Dockerfile") {
-        agent {
-	    docker {
-	        image 'hadolint/hadolint:latest-debian'
-	        //image 'ghcr.io/hadolint/hadolint:latest-debian'
-	    }
-        }
-        steps {
-	    sh 'hadolint Dockerfile | tee -a hadolint_lint.txt'
-        }
-        post {
-	    always {
-	        archiveArtifacts 'hadolint_lint.txt'
-	    }
-        }
-    }
 	
-//    stage('Lint Dockerfile') {
-//	    sh('hadolint Dockerfile')
-//    }
+    stage('Lint Dockerfile') {
+	sh('docker run --rm -i hadolint/hadolint < Dockerfile')
+    }
 
     stage('Build docker image') {
         newImage = docker.build("rniekisch/capstone_app")
