@@ -5,7 +5,7 @@ node('master') {
     stage('Checkout Git Repository') {
         checkout scm
     }
-    /*
+
     stage('Build docker image') {
         newImage = docker.build("rniekisch/capstone_app")
     }
@@ -16,7 +16,7 @@ node('master') {
             newImage.push("latest")
         }
     }
-    */
+
     stage('Deploy to Kubernetes cluster') {
         def text = readFile(file: 'kubernetes/deployment.yaml.tmp')
         text = text.replaceAll("<IMAGE>", "rniekisch/capstone_app:BUILD_${env.BUILD_NUMBER}")
