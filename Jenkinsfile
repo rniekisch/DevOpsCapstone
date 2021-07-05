@@ -17,6 +17,10 @@ node('master') {
         newImage = docker.build("rniekisch/capstone_app")
     }
 
+    stage('Security Scan') {
+	sh('trivy image rniekisch/capstone_app')
+    }
+	
     stage('Lint app') {
     	docker.image('rniekisch/capstone_app:latest').inside() {
 	    withEnv(['PYLINTHOME=.']) {
