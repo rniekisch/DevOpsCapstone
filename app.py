@@ -12,7 +12,9 @@ def home():
     browser = request.headers.get("User-Agent")
     url = request.values.get("url") or request.headers.get("Referer")
     event = request.values.get("event")
-    ip_address = request.access_route[0] or request.remote_addr
+    ip_address = request.remote_addr
+    if ip_adress==NoneType:
+        ip_adress = 'unknown'
     return '''
 <html>
     <head>
