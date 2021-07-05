@@ -80,4 +80,4 @@ Website:
 
 ## Additional scripts
 
-'run_docker.sh' and 'upload_docker.sh' can be used to test and deploy the application image outise of the CI/CD process
+'run_docker.sh' and 'upload_docker.sh' can be used to test and deploy the application image outside of the CI/CD process.
