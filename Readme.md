@@ -1,7 +1,7 @@
 
 ## Solution
 
-The deployed application is a (very) simple Python Flask app, showing request data like browser, referer, event and ip address. As docker registry a public repository on DockerHub is used. The implemented update strategy for the Kubernetes pods is a rolling update.
+The deployed application is a (very) simple Python Flask app, showing request data like browser, referer, event and ip address. The used docker registry is a public repository on DockerHub. The implemented update strategy for the Kubernetes pods is a rolling update.
 
 The app can be found at: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com>
 
