@@ -3,9 +3,11 @@
 
 The deployed application is a simple Python Flask app, showing request data like browser, referer, event and ip address.
 
-The implemented update strategy is a rolling update.
+The application containers are uploaded into a public repository on DockerHub.
 
-The url for the app is: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com>
+The implemented update strategy for the Kubernetes pods is a rolling update.
+
+The app can be found at: <http://a4916a6bd3db043098bb2ddaeb334ab8-317157340.us-west-2.elb.amazonaws.com>
 
 
 ## Infrastructure
